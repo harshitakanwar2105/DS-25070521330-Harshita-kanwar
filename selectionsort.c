@@ -1,44 +1,32 @@
 #include <stdio.h>
 
-void selectionSort(int arr[], int n) {
-    //write your code here...
-    int i , j,min,temp;
-    for(i=0;i<n;i++){
-		min = i;
-		for(j=i+1;j<n;j++){
-			if(arr[j]>arr[min]){
-			min = j;
-			}
-		}
-		temp = arr[i];
-		arr[i] = arr[min];
-		arr[min] = temp;
-	}
-    
-    
-}
-
 int main() {
-    int n;
+    int a[100], n, i, j, min, temp;
 
-    // Input number of elements in the array
+    printf("Enter number of elements: ");
     scanf("%d", &n);
-
-    int arr[n];
-
-    // Input array elements
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
+    for(i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
     }
 
-    // Sort the array in descending order using selection sort
-    selectionSort(arr, n);
+    for(i = 0; i < n - 1; i++) {
+        min = i;   
 
-    // Output the sorted array
-    for (int i = 0; i < n; i++) {
-        printf("%d ", arr[i]);
+        for(j = i + 1; j < n; j++) {
+            if(a[j] < a[min]) {
+                min = j;   
+            }
+        }
+
+        temp = a[i];
+        a[i] = a[min];
+        a[min] = temp;
     }
-    printf("\n");
+
+    printf("Sorted array:\n");
+    for(i = 0; i < n; i++) {
+        printf("%d ", a[i]);
+    }
 
     return 0;
 }
