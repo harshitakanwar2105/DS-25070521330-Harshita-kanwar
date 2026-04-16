@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX 100000
+
+char stack[MAX];
+int top = -1;
+
+void push(char ch) {
+    stack[++top] = ch;
+}
+
+char pop() {
+    return stack[top--];
+}
+
+int isEmpty() {
+    return top == -1;
+}
+
+int isBalanced(char* s) {
+    for (int i = 0; s[i] != '\0'; i++) {
+        char ch = s[i];
+
+        if (ch == '(' || ch == '{' || ch == '[') {
+            push(ch);
+        } else {
+            if (isEmpty()) return 0;
+
+            char topChar = pop();
+
+            if ((ch == ')' && topChar != '(') ||
+                (ch == '}' && topChar != '{') ||
+                (ch == ']' && topChar != '[')) {
+                return 0;
+            }
+        }
+    }
+    return isEmpty();
+}
+
+int main() {
+    char s[100000];
+
+    printf("Enter expression: \n");
+    scanf("%s", s);
+
+    if (isBalanced(s))
+        printf("Balanced\n");
+    else
+        printf("Not Balanced\n");
+        
+        printf("Name: Harshita Kanwar\n");
+        printf("PRN: 25070521330");
+
+    return 0;
+}
